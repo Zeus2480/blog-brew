@@ -3,8 +3,8 @@
       <the-navbar></the-navbar>
 
       <v-main class="tw-bg-secondary-background tw-min-h-screen">
-         <v-container class="tw-h-full tw-px-4 md:tw-px-0 xl:tw-px-20">
-            <div class="view-profile">
+         <v-container class="tw-h-full tw-px-4 tw-py-8 md:tw-px-0 xl:tw-px-20">
+            <div class="view-profile tw-py-6">
                <profile-card
                   :imagePath="imagePath"
                   :likes="likesCount"

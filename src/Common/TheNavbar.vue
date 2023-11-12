@@ -1,11 +1,11 @@
 <template>
-   <div>
-      <v-app-bar flat height="49" class="tw-z-20" app color="white">
-         <v-app-bar-nav-icon
-            class="tw-ml-6"
-            @click="toogleNavigationDrawer"
-         ></v-app-bar-nav-icon>
-         <!-- <div >
+  <div>
+    <v-app-bar flat height="75" class="tw-z-20" app color="white">
+      <v-app-bar-nav-icon
+        class="tw-ml-6"
+        @click="toogleNavigationDrawer"
+      ></v-app-bar-nav-icon>
+      <!-- <div >
             <v-toolbar-title
             class="tw-ml-3 tw-flex"
                ><img
@@ -17,25 +17,34 @@
                </v-toolbar-title
             >
          </div> -->
-         <v-spacer></v-spacer>
-         <div v-if="isSearchVisible" class="tw-h-full">
-            <div class="tw-mb-3 tw-my-auto xl:tw-w-96">
-               <div
-                  class="tw-border-2  tw-border-gray-300 tw-p-1 tw-px-2 tw-rounded-lg"
-               >
-                  <v-icon>mdi-magnify</v-icon>
-                  <input
-                     type="text"
-                     class="tw-mx-2 tw-outline-none"
-                     placeholder="Search"
-                     v-model="searchQuery"
-                     @input="searchFunctions"
-                  />
-               </div>
-            </div>
-         </div>
-         <v-spacer></v-spacer>
-         <!-- <v-menu nudge-bottom allow-overflow max-height="600">
+      <v-spacer></v-spacer>
+      <div v-if="isSearchVisible" class="tw-h-full tw-w-[500px]">
+        <v-text-field
+          label="Search"
+          prepend-inner-icon="mdi-magnify"
+          v-model="searchQuery"
+          @input="searchFunctions"
+          outlined
+          placeholder="Search"
+        ></v-text-field>
+        <!-- <div class="tw-mb-3 tw-my-auto xl:tw-w-96">
+          <div
+            class="tw-border-2 tw-border-gray-300 tw-p-1 tw-px-2 tw-rounded-lg"
+          >
+            <v-icon>mdi-magnify</v-icon>
+
+            <input
+              type="text"
+              class="tw-mx-2 tw-outline-none"
+              placeholder="Search"
+              v-model="searchQuery"
+              @input="searchFunctions"
+            />
+          </div>
+        </div> -->
+      </div>
+      <v-spacer></v-spacer>
+      <!-- <v-menu nudge-bottom allow-overflow max-height="600">
             <template v-slot:activator="{ on: menu, attrs }">
                <v-tooltip bottom>
                   <template v-slot:activator="{ on: tooltip }">
@@ -79,196 +88,193 @@
             </v-card>
          </v-menu> -->
 
-         <v-btn v-if="isProfilePictureAvailable" class="ma-2" icon
-            ><v-icon>mdi-account-circle</v-icon></v-btn
-         >
-         <v-btn v-if="!isProfilePictureAvailable" @click="pushProfile" class="ma-2" icon
-            ><img
-               :src="profilePicture"
-               class="tw-h-6 tw-w-6 tw-rounded-full"
-               alt=""
-         /></v-btn>
-         <v-icon>mdi-notifications</v-icon>
-      </v-app-bar>
+      <v-btn v-if="isProfilePictureAvailable" class="ma-2" icon
+        ><v-icon>mdi-account-circle</v-icon></v-btn
+      >
+      <v-btn
+        v-if="!isProfilePictureAvailable"
+        @click="pushProfile"
+        class="ma-2"
+        icon
+        ><img
+          :src="profilePicture"
+          class="tw-h-6 tw-w-6 tw-rounded-full"
+          alt=""
+      /></v-btn>
+      <v-icon>mdi-notifications</v-icon>
+    </v-app-bar>
 
-      <v-navigation-drawer v-model="drawer"  app>
-         <div class=" ">
-            <div class="logo tw-flex tw-w-full tw-justify-center tw-mt-4">
-               <img src="../assets/Logo/WebookLogo.svg" class="tw-h-8" alt="" />
-               <h2 class="tw-my-auto tw-font-medium tw-text-2xl tw-ml-3">
-                  Webook
-               </h2>
-            </div>
-         </div>
-         <div class="new-post-button tw-mt-8 tw-ml-6">
-            <v-btn dark rounded  @click="newPost" class="tw-p-2"
-               ><img
-                  src="../assets/Logo/Vector (2).svg"
-                  class="tw-h-5 tw-mr-2"
-                  alt=""
-               />
-               New Post</v-btn
-            >
-         </div>
-         <div class="tw-mx-6 tw-mt-6">
-            <v-list nav>
-               <v-list-item class="tw-my-2" router to="/dashboard/post">
-                  <v-list-item-action>
-                     <v-icon>mdi-file</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                     <v-list-item-title>Posts</v-list-item-title>
-                  </v-list-item-content>
-               </v-list-item>
-               <v-list-item class="tw-my-2" router to="/dashboard/stats">
-                  <v-list-item-action>
-                     <v-icon>mdi-equalizer</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                     <v-list-item-title>Stats</v-list-item-title>
-                  </v-list-item-content>
-               </v-list-item>
-               <v-list-item class="tw-my-2" router to="/dashboard/comments">
-                  <v-list-item-action>
-                     <v-icon>mdi-comment</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                     <v-list-item-title>Comments</v-list-item-title>
-                  </v-list-item-content>
-               </v-list-item>
-               <v-list-item
-                  class="tw-my-2 tw-rounded-xl"
-                  router
-                  to="/dashboard/profile"
-               >
-                  <v-list-item-action>
-                     <v-icon>mdi-account</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content class="">
-                     <v-list-item-title>Profile</v-list-item-title>
-                  </v-list-item-content>
-               </v-list-item>
-               <v-list-item
-                  class="tw-my-2 tw-rounded-xl"
-                  v-ripple
-                  @click="logout"
-               >
-                  <v-list-item-action>
-                     <v-icon>mdi-logout</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                     <v-list-item-title>Logout</v-list-item-title>
-                  </v-list-item-content>
-               </v-list-item>
-               <v-divider></v-divider>
-            </v-list>
-         </div>
-         <!-- <v-btn depressed block><v-icon dark>mdi-file</v-icon> Comments</v-btn>
+    <v-navigation-drawer v-model="drawer" app>
+      <div class=" ">
+        <div class="logo tw-flex tw-w-full  tw-ml-6  tw-mt-4">
+          <!-- <img src="../assets/Logo/WebookLogo.svg" class="tw-h-8" alt="" /> -->
+          <h2 class="tw-my-auto tw-font-medium tw-text-2xl">Blog Brew</h2>
+        </div>
+      </div>
+      <div class="new-post-button tw-mt-8 tw-ml-6">
+        <v-btn dark rounded @click="newPost" class="tw-p-2"
+          ><img
+            src="../assets/Logo/Vector (2).svg"
+            class="tw-h-5 tw-mr-2"
+            alt=""
+          />
+          New Post</v-btn
+        >
+      </div>
+      <div class=" tw-mt-6">
+        <v-list nav>
+          <v-list-item class="tw-my-2" router to="/dashboard/post">
+            <v-list-item-action>
+              <v-icon>mdi-file</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item class="tw-my-2" router to="/dashboard/stats">
+            <v-list-item-action>
+              <v-icon>mdi-equalizer</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Stats</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item class="tw-my-2" router to="/dashboard/comments">
+            <v-list-item-action>
+              <v-icon>mdi-comment</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Comments</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+            class="tw-my-2 tw-rounded-xl"
+            router
+            to="/dashboard/profile"
+          >
+            <v-list-item-action>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-action>
+            <v-list-item-content class="">
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item class="tw-my-2 tw-rounded-xl" v-ripple @click="logout">
+            <v-list-item-action>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Logout</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
+        </v-list>
+      </div>
+      <!-- <v-btn depressed block><v-icon dark>mdi-file</v-icon> Comments</v-btn>
             <v-btn depressed block><v-icon dark>mdi-file</v-icon> Profile</v-btn>
             <v-btn depressed block><v-icon dark>mdi-file</v-icon> Logout</v-btn> -->
-      </v-navigation-drawer>
-      <!-- <div class="tw-h-screen tw-w-screen tw-bg-slate-500 tw-mt-12 ">fdfd</div> -->
+    </v-navigation-drawer>
+    <!-- <div class="tw-h-screen tw-w-screen tw-bg-slate-500 tw-mt-12 ">fdfd</div> -->
 
-      <!-- <p class="tw-mt-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos iure harum reiciendis alias atque totam saepe vitae modi eveniet optio?</p> -->
-   </div>
+    <!-- <p class="tw-mt-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos iure harum reiciendis alias atque totam saepe vitae modi eveniet optio?</p> -->
+  </div>
 </template>
 <script>
 import axios from "axios";
 // import NotificationBarCard from "../components/NotificationBarCard.vue";
 export default {
-   props: ["isSearchVisible", "notOpenNavigation"],
-   components: {
-      // "notification-bar-card": NotificationBarCard,
-   },
+  props: ["isSearchVisible", "notOpenNavigation"],
+  components: {
+    // "notification-bar-card": NotificationBarCard,
+  },
 
-   data() {
-      return {
-         drawer: true,
-         // isProfilePictureAvailable: false,
-         imagePath: "",
-         searchQuery: "",
-      };
-   },
-   created() {
-      this.getProfile();
-   },
-   computed: {
-      isProfilePictureAvailable() {
-         if (this.$store.getters.getUserProfilePicture) {
-            return false;
-         } else {
-            return true;
-         }
-      },
-      profilePicture(){
-         return this.$store.getters.getUserProfilePicture;
+  data() {
+    return {
+      drawer: true,
+      // isProfilePictureAvailable: false,
+      imagePath: "",
+      searchQuery: "",
+    };
+  },
+  created() {
+    this.getProfile();
+  },
+  computed: {
+    isProfilePictureAvailable() {
+      if (this.$store.getters.getUserProfilePicture) {
+        return false;
+      } else {
+        return true;
       }
-   },
-   methods: {
+    },
+    profilePicture() {
+      return this.$store.getters.getUserProfilePicture;
+    },
+  },
+  methods: {
+    pushProfile() {
+      this.$router.push(`/dashboard/profile`);
+    },
+    searchFunctions() {
+      this.$emit("searchQuery", this.searchQuery);
+    },
+    getProfile() {
+      if (this.$store.getters.getUserName == "") {
+        axios
+          .get("/profile", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
 
-      pushProfile(){
-         this.$router.push(`/dashboard/profile`)
-      },
-      searchFunctions(){
-         this.$emit('searchQuery', this.searchQuery)
-      },
-      getProfile() {
-         if (this.$store.getters.getUserName == "") {
-            axios
-               .get("/profile", {
-                  headers: {
-                     Authorization: "Bearer " + localStorage.getItem("token"),
-                  },
-               })
-               .then((res) => {
-                  console.log(res.data);
-
-                  this.$store.dispatch("setUserProfile", res.data);
-               });
-         }
-      },
-      toogleNavigationDrawer() {
-         this.drawer = !this.drawer;
-      },
-      newPost() {
-         this.$router.push("/dashboard/create-post");
-      },
-      logout() {
-         axios
-            .post(
-               "/logout",
-               {},
-               {
-                  headers: {
-                     Authorization: "Bearer " + localStorage.getItem("token"),
-                  },
-               }
-            )
-            .then(() => {
-               // this.loggedOut=true;
-               localStorage.removeItem("token");
-               let obj={
-                  name:"",
-                  youtube:"",
-                  facebook:"",
-                  instagram:"",
-                  slug:"",
-                  site:"",
-                  image_path:"",
-                  bio:"",
-                  created_at:""
-               }
-               this.$store.dispatch("setUserProfile", obj);
-               this.$router.push("/login");
-            });
-      },
-   },
+            this.$store.dispatch("setUserProfile", res.data);
+          });
+      }
+    },
+    toogleNavigationDrawer() {
+      this.drawer = !this.drawer;
+    },
+    newPost() {
+      this.$router.push("/dashboard/create-post");
+    },
+    logout() {
+      axios
+        .post(
+          "/logout",
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        )
+        .then(() => {
+          // this.loggedOut=true;
+          localStorage.removeItem("token");
+          let obj = {
+            name: "",
+            youtube: "",
+            facebook: "",
+            instagram: "",
+            slug: "",
+            site: "",
+            image_path: "",
+            bio: "",
+            created_at: "",
+          };
+          this.$store.dispatch("setUserProfile", obj);
+          this.$router.push("/login");
+        });
+    },
+  },
 };
 </script>
 <style scoped>
 .v-list-item--active {
-   background-color: #e1b413;
-   color: #fff !important;
-   border-radius: 0.6rem;
+  background-color: #e1b413;
+  color: #fff !important;
+  border-radius: 0.6rem;
 }
 </style>
