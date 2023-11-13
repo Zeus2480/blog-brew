@@ -22,6 +22,7 @@
             @input="searchFunctions"
             outlined
             placeholder="Search"
+            @keyup.enter="pushToSearchPage"
           ></v-text-field>
         </div>
 
