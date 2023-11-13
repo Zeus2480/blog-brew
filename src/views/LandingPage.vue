@@ -6,7 +6,7 @@
       <div class="tw-flex tw-justify-between tw-h-full">
         <div class="tw-flex tw-items-center tw-h-full">
           <div class="tw-mx-4">
-            <h3 class="tw-text-white tw-text-xl tw-font-medium">Blog Brew</h3>
+            <h3 class="tw-text-white tw-text-xl tw-font-medium">BlogBrew</h3>
           </div>
         </div>
         <div class="tw-flex tw-items-center tw-h-full tw-mx-4">
