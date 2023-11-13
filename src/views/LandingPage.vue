@@ -36,7 +36,7 @@
       <div class="tw-flex tw-justify-center tw-h-full tw-items-center">
         <div class="tw-px-4">
           <h1 class="boujee-text tw-text-center tw-font-medium">
-            Craft. Inspire. Share.
+            Craft. Publish. Inspire.
           </h1>
           <div class="tw-flex tw-justify-center tw-mt-6 md:tw-mt-12">
             <p
