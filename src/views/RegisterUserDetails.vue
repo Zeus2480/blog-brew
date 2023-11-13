@@ -49,14 +49,17 @@
              </div> -->
 
           <!-- //Form -->
-          <user-details
-            v-if="!isStepOneCompleted"
-            @userData="userData"
-          ></user-details>
-          <user-domain
-            :userData="formData"
-            v-if="isStepOneCompleted"
-          ></user-domain>
+          <div class="tw-mt-8">
+            <user-details
+              v-if="!isStepOneCompleted"
+              @userData="userData"
+            ></user-details>
+            <user-domain
+              :userData="formData"
+              v-if="isStepOneCompleted"
+            ></user-domain>
+
+          </div>
         </div>
       </div>
     </div>

@@ -70,47 +70,50 @@
               </div> -->
 
           <!-- //Form -->
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                v-model="inputEmail"
-                ref="inputEmail"
-                label="Email"
-                outlined
-                :rules="[() => !!inputEmail || 'This field is required']"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                v-model="inputPassword"
-                ref="inputPassword"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showPassword ? 'text' : 'password'"
-                name="input-10-1"
-                label="Password"
-                :rules="[
-                  () => !!inputPassword || 'This field is required',
-                  () =>
-                    (!!inputPassword && inputPassword.length >= 8) ||
-                    'At least 8 characters',
-                ]"
-                hint="At least 8 characters"
-                outlined
-                @click:append="showPassword = !showPassword"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-btn
-                large
-                block
-                :loading="showButtonLoading"
-                color="black"
-                dark
-                @click="login"
-                >Login</v-btn
-              >
-            </v-col>
-          </v-row>
+          <div class="tw-mt-16">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="inputEmail"
+                  ref="inputEmail"
+                  label="Email"
+                  outlined
+                  :rules="[() => !!inputEmail || 'This field is required']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="inputPassword"
+                  ref="inputPassword"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="showPassword ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Password"
+                  :rules="[
+                    () => !!inputPassword || 'This field is required',
+                    () =>
+                      (!!inputPassword && inputPassword.length >= 8) ||
+                      'At least 8 characters',
+                  ]"
+                  hint="At least 8 characters"
+                  outlined
+                  @click:append="showPassword = !showPassword"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-btn
+                  large
+                  block
+                  :loading="showButtonLoading"
+                  color="black"
+                  dark
+                  @click="login"
+                  >Login</v-btn
+                >
+              </v-col>
+            </v-row>
+
+          </div>
         </div>
       </div>
     </div>
