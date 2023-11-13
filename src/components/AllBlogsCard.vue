@@ -109,12 +109,10 @@ export default {
    methods: {
       openPost(e) {
          e.stopPropagation();
-         console.log(e.target);
          this.$router.push(`/view/${this.userId}/${this.postId}`);
       },
       opentag(e) {
          e.stopPropagation();
-         console.log(this.selection);
          this.$router.push(`/view/${this.userId}/tags/${this.selection}`);
       },
    },

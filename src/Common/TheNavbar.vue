@@ -106,7 +106,7 @@
 
     <v-navigation-drawer v-model="drawer" app>
       <div class=" ">
-        <div class="logo tw-flex tw-w-full  tw-ml-6  tw-mt-4">
+        <div class="logo tw-flex tw-w-full tw-ml-6 tw-mt-4">
           <!-- <img src="../assets/Logo/WebookLogo.svg" class="tw-h-8" alt="" /> -->
           <h2 class="tw-my-auto tw-font-medium tw-text-2xl">Blog Brew</h2>
         </div>
@@ -121,7 +121,7 @@
           New Post</v-btn
         >
       </div>
-      <div class=" tw-mt-6">
+      <div class="tw-mt-6">
         <v-list nav>
           <v-list-item class="tw-my-2" router to="/dashboard/post">
             <v-list-item-action>
@@ -190,7 +190,7 @@ export default {
 
   data() {
     return {
-      drawer: true,
+      drawer: false,
       // isProfilePictureAvailable: false,
       imagePath: "",
       searchQuery: "",
@@ -227,8 +227,6 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res.data);
-
             this.$store.dispatch("setUserProfile", res.data);
           });
       }

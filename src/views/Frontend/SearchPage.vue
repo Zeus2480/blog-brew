@@ -153,7 +153,6 @@ export default {
    },
    props: ["userId", "searchTerm"],
    created() {
-      console.log(this.userId);
       this.getSearchData();
       //   console.log(this.userId);
       //   console.log(this.blogId);

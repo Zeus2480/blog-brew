@@ -72,7 +72,6 @@ export default {
    },
    created() {
       let data = this.$store.getters.getUserProfile;
-      console.log(data);
       this.userName = data.name;
       this.createdDate = data.createdAt;
       this.bio = data.bio;

@@ -156,7 +156,6 @@ export default {
                   },
                })
                .then((res) => {
-                  console.log(res.data);
                   this.user.fullName = res.data.name;
                   this.user.email = res.data.email;
                   const fullName = this.user.fullName.split(" ");
@@ -168,10 +167,8 @@ export default {
       },
       toogleNavigationDrawer() {
          // console.log(123);
-         console.log(this.drawer);
 
          this.drawer = !this.drawer;
-         console.log(this.drawer);
          this.$store.dispatch("setDrawer", this.drawer);
       },
       pushRegister() {

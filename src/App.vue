@@ -1,46 +1,40 @@
 <template>
   <v-app>
-    
+    <router-view :key="$route.path" />
 
-      <router-view :key="$route.path"/>
-   
     <!-- </v-content> -->
-
   </v-app>
 </template>
 
 <script>
 // import TheNavbarVue from './Common/TheNavbar.vue';
 // import Navbar from './Common/TheNavbar.vue'
-import axios from "axios"
+import axios from "axios";
 export default {
-  components:{
+  components: {
     // 'the-nav':Navbar
   },
-  name: 'App',
-  created(){
+  name: "App",
+  created() {
     // console.log(123456);
-    if(localStorage.getItem("token")){
-
+    if (localStorage.getItem("token")) {
       // this.getProfile();
     }
   },
-  methods:{
-     getProfile() {
-         if (this.$store.getters.getUserName == "") {
-            axios
-               .get("/profile", {
-                  headers: {
-                     Authorization: "Bearer " + localStorage.getItem("token"),
-                  },
-               })
-               .then((res) => {
-                  console.log(res.data);
-
-                  this.$store.dispatch("setUserProfile", res.data);
-               });
-         }
-      },
+  methods: {
+    getProfile() {
+      if (this.$store.getters.getUserName == "") {
+        axios
+          .get("/profile", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            this.$store.dispatch("setUserProfile", res.data);
+          });
+      }
+    },
   },
   data: () => ({
     //
@@ -48,10 +42,10 @@ export default {
 };
 </script>
 <style >
-*{
-  font-family: 'Poppins', sans-serif;
+* {
+  font-family: "Poppins", sans-serif;
 }
 .v-application p {
-    margin-bottom: unset !important;
+  margin-bottom: unset !important;
 }
 </style>

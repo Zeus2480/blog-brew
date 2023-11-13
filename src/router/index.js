@@ -45,7 +45,7 @@ const routes = [
     component: LoginReader,
   },
   {
-    path: "/register-userdetails",
+    path: "/signup",
     name: "RegisterUserDetails",
     component: RegisterUserDetails,
     props: true,

@@ -25,7 +25,11 @@
                 </div>
                 <div class="puplish-preview">
                   <!-- <v-btn outlined color="primary">Preview</v-btn> -->
-                  <v-btn color="primary" @click="update" class="tw-ml-4"
+                  <v-btn
+                    color="primary"
+                    :loading="loading"
+                    @click="update"
+                    class="tw-ml-4"
                     >Update</v-btn
                   >
                 </div>
@@ -49,11 +53,14 @@
 
                 <div>
                   <v-file-input
-                    label="File input"
+                    label="Banner image"
                     filled
                     prepend-icon="mdi-camera"
                     accept="image/png, image/gif, image/jpeg"
+                    show-size
                     @change="onFileSelected"
+                    :rules="rules"
+                    hint="File size should not exceed 500kb"
                   ></v-file-input>
                 </div>
                 <div class="title">
@@ -98,12 +105,24 @@ export default {
       });
 
       this.tagsArray = temp;
-      console.log(temp);
     },
   },
   data() {
     return {
       isLoadingCompleted: false,
+      loading: false,
+      rules: [
+        (file) => {
+          if (file) {
+            return (
+              !file ||
+              file?.size < 500000 ||
+              "File size should be less than 500 KB!"
+            );
+          }
+          return false;
+        },
+      ],
       prevRoute: null,
       inputTag: "",
       tagsArray: [],
@@ -141,7 +160,6 @@ export default {
     getData() {
       let slug = this.$store.getters.getSlug;
       axios.get(`/user/${slug}/post/${this.postId}`).then((res) => {
-        console.log(res.data);
         this.title = res.data.post.name;
         this.summary = res.data.post.excerpt;
         this.body = res.data.post.body;
@@ -175,6 +193,7 @@ export default {
     update() {
       this.validate();
       if (this.valid) {
+        this.loading = true;
         let formData = new FormData();
         formData.append("name", this.title);
         formData.append("excerpt", this.summary);
@@ -183,7 +202,6 @@ export default {
         if (this.selectedFile) {
           formData.append("image", this.selectedFile);
         }
-        console.log(formData);
         axios
           .post(`/post/${this.postId}/update`, formData, {
             headers: {
@@ -196,7 +214,13 @@ export default {
               this.text = "Post Updated Successfully";
               this.$router.push("/dashboard/post");
             }
-            console.log(res);
+          })
+          .catch(() => {
+            this.snackbar = true;
+            this.text = `File size should not exceed 500kb`;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       }
       // this.$router.push(`/`);

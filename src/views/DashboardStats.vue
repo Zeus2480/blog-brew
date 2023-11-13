@@ -111,9 +111,8 @@ export default {
     },
   },
   watch: {
-    slug(value) {
+    slug() {
       this.getData();
-      console.log(value);
       // this.filterPost(value);
     },
   },
@@ -123,7 +122,6 @@ export default {
   methods: {
     getData() {
       if (this.$store.getters.getSlug) {
-        console.log();
         axios
           .get(`/post/views`, {
             headers: {
@@ -131,7 +129,6 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res.data);
             this.todayViews = res.data.todays_Views;
             this.allTImeViews = res.data.total_Views;
             this.thisWeekViews = res.data.weekly_Views;
@@ -157,9 +154,7 @@ export default {
         let tempViewDate = [];
         let tempLike = [];
         let tempLikeDate = [];
-        if (post.views.length == 0) {
-          console.log("No views");
-        }
+        
         post.views.forEach((view) => {
           // console.log(view);
           tempView.push(view.views);
@@ -188,8 +183,7 @@ export default {
         // console.log(tempLike);
         // console.log(tempLikeDate);
       });
-      console.log(this.viewArray);
-      console.log(this.likesArray);
+      
       this.isLoadingCompleted = true;
     },
   },

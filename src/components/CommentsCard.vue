@@ -141,11 +141,8 @@ export default {
             headers:{
                "Authorization":"Bearer "+localStorage.getItem("token")
             }
-         }).then(res=>{
-            console.log(res.data)
+         }).then(()=>{
             this.$emit("deleteComment",this.commentId,this.postId)
-         }).catch(err=>{
-            console.log(err)
          })
       }
    },

@@ -25,7 +25,11 @@
                 </div>
                 <div class="puplish-preview">
                   <!-- <v-btn outlined color="primary">Preview</v-btn> -->
-                  <v-btn color="primary" @click="publish" class="tw-ml-4"
+                  <v-btn
+                    color="primary"
+                    :loading="loading"
+                    @click="publish"
+                    class="tw-ml-4"
                     >Publish</v-btn
                   >
                 </div>
@@ -51,13 +55,16 @@
 
                 <div class="tw-my-2">
                   <v-file-input
-                    label="File input"
+                    label="Banner image"
                     ref="inputFile"
                     filled
                     required
+                    show-size
                     prepend-icon="mdi-camera"
                     accept="image/png, image/gif, image/jpeg"
                     @change="onFileSelected"
+                    :rules="rules"
+                    hint="File size should not exceed 500kb"
                   ></v-file-input>
                 </div>
                 <div class="title">
@@ -101,14 +108,26 @@ export default {
       });
 
       this.tagsArray = temp;
-      console.log(temp);
     },
   },
 
   data() {
     return {
       isLoadingCompleted: false,
+      loading: false,
       prevRoute: null,
+      rules: [
+        (file) => {
+          if (file) {
+            return (
+              !file ||
+              file?.size < 500000 ||
+              "File size should be less than 500 KB!"
+            );
+          }
+          return false;
+        },
+      ],
       inputTag: "",
       tagsArray: [],
       selection: "",
@@ -174,14 +193,11 @@ export default {
     window.addEventListener("beforeunload", this.myfun);
   },
   watcher: {
-    selectedFile(newValue) {
-      console.log(newValue);
-    },
+    
   },
   methods: {
     myfun() {
       // Write your business logic here
-      console.log("hello");
     },
     onFileSelected(event) {
       // console.log(event);
@@ -216,7 +232,7 @@ export default {
     publish() {
       this.validate();
       if (this.valid) {
-        console.log(this.tagsArray);
+        this.loading = true;
         let formData = new FormData();
         formData.append("name", this.title);
         formData.append("excerpt", this.summary);
@@ -225,16 +241,14 @@ export default {
           formData.append("tags[]", tag);
         });
         formData.append("image", this.selectedFile);
-        console.log(formData);
-        let obj = {
-          name: this.title,
-          excerpt: this.summary,
-          body: this.body,
-          tags: this.tagsArray,
-          image: this.selectedFile,
-        };
-        console.log(obj);
-
+        // let obj = {
+        //   name: this.title,
+        //   excerpt: this.summary,
+        //   body: this.body,
+        //   tags: this.tagsArray,
+        //   image: this.selectedFile,
+        // };
+        // console.log(obj);
         axios
           .post("/post/create", formData, {
             headers: {
@@ -243,16 +257,18 @@ export default {
           })
           .then((res) => {
             if (res.status === 200) {
-              console.log(res.data.tags);
               this.snackbar = true;
               this.text = "Post Created Successfully";
-              console.log(1212);
               this.$router.push(`/dashboard/post`);
-              console.log(12142435423);
             }
+          })
+          .catch(() => {
+            this.snackbar = true;
+            this.text = `File size should not exceed 500kb`;
+          })
+          .finally(() => {
+            this.loading = false;
           });
-        this.snackbar = true;
-        this.text = `Post published successfully`;
       }
       // this.$router.push(`/`);
     },

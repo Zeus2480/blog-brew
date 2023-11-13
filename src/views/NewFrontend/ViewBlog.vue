@@ -94,7 +94,6 @@
                   @keyup.enter="comment"
                   dark
                   color="#2A73C5"
-
                   block
                   :loading="loading"
                   class="loading tw-flex tw-items-center md:tw-ml-2"
@@ -448,7 +447,6 @@ export default {
         .get(`/comments/${this.blogId}`)
         .then((res) => {
           this.commentsArray = res.data;
-          console.log(this.commentsArray);
 
           this.commentsArray = this.commentsArray.reverse();
         })
@@ -477,7 +475,6 @@ export default {
           .then((res) => {
             this.commentBody = "";
             this.commentsArray.unshift(res.data);
-            console.log(this.commentsArray);
           })
           .finally(() => {
             this.loading = false;
@@ -503,8 +500,6 @@ export default {
             }
           )
           .then((res) => {
-            console.log(res);
-
             this.isLiked = !this.isLiked;
             if (res.data.like) {
               this.likeCount++;
@@ -528,8 +523,6 @@ export default {
       // }
     },
     siteNameMethod(name) {
-      console.log(name);
-
       this.siteName = name;
     },
     getBlogData() {
@@ -567,8 +560,6 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res.data.is_like);
-
             if (res.data.is_like == 1) {
               this.isLiked = true;
             } else {

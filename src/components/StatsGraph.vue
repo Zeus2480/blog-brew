@@ -60,7 +60,6 @@ export default {
     props:['views','dates','title','img','createdAt','likesArray','likesDates','viewsArray','viewsDates'],
    components: {},
    created(){
-      console.log(this.viewsArray);
       
    },
    computed:{

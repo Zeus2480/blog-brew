@@ -221,8 +221,7 @@ export default {
       this.co();
    },
    watch: {
-      status(value) {
-         console.log(value);
+      status() {
          if (this.status == "Archive") {
             this.showArchive = true;
             this.showPublish = false;
@@ -247,7 +246,6 @@ export default {
    ],
    methods: {
       co() {
-         console.log(this.status);
          if (this.status == "Archive") {
             this.showArchive = true;
          }
@@ -266,7 +264,6 @@ export default {
          this.$emit("showSnackbar", "Link Copied Sucessfully");
       },
       archivePost() {
-         console.log(123);
          axios
             .post(`/post/${this.postId}/update/status_archive`)
             .then((res) => {
@@ -285,7 +282,6 @@ export default {
          axios
             .post(`/post/${this.postId}/update/status_archive`)
             .then((res) => {
-               console.log(res.data.post);
                this.resData = res.data.post;
                // this.showArchive = !this.showArchive;
                // this.showPublish = !this.showPublish;

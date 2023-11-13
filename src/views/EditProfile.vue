@@ -264,7 +264,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
           this.$store.dispatch("updateUserProfile", res.data);
           this.text = "Profile updated sucessfully!";
           this.snackbar = true;
@@ -300,7 +299,6 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res);
             this.$store.dispatch("updateUserProfile", res.data);
             this.text = "Profile Picture updated sucessfully!";
             this.snackbar = true;

@@ -77,7 +77,6 @@ export default {
                tags: this.tagName,
             })
             .then((res) => {
-               console.log(res.data);
                this.tagsDataArray = res.data;
             })
             .finally(() => {

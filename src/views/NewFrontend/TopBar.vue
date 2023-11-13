@@ -300,7 +300,6 @@ export default {
       }
     },
     checkUserSubscribed() {
-      console.log();
       if (!this.$store.getters.getFrontLoggedInUserSubscribed) {
         axios
           .get(`/user/${this.$route.params.userId}/is_subscribe`, {
@@ -338,7 +337,6 @@ export default {
               },
             })
             .then((res) => {
-              console.log(res.data);
               this.user.fullName = res.data.name;
               this.user.email = res.data.email;
               const fullName = this.user.fullName.split(" ");
@@ -382,7 +380,6 @@ export default {
             authorSLug: this.$route.params.userId,
             authorSite: res.data.user.site,
           };
-          console.log(tempObject);
 
           this.$store.dispatch("setAuthorProfile", tempObject);
           this.authorName = res.data.user.name;
@@ -393,7 +390,6 @@ export default {
           this.authorSocials.instagram = res.data.user.instagram;
           this.authorSubscribers = res.data.subscriber;
           this.siteName = res.data.user.site;
-          console.log(this.siteName);
 
           // this.$emit("siteName", 7);
         });

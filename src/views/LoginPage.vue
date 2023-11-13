@@ -35,7 +35,7 @@
               color="black"
               large
               dark
-              @click="$router.push('/register-userdetails')"
+              @click="$router.push('/signup')"
               >Sign up</v-btn
             >
           </div>
@@ -173,7 +173,6 @@ export default {
             password: this.inputPassword,
           })
           .then((res) => {
-            console.log(res.status);
             if (res.status === 200) {
               localStorage.setItem("token", res.data.access_token);
               this.$router.push("/dashboard/post");

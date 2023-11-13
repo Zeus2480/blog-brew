@@ -207,7 +207,6 @@ export default {
                this.authorSocials.instagram = res.data.instagram;
                this.authorSubscribers = res.data.subscribe;
                this.siteName = res.data.site;
-               console.log(this.siteName);
 
                // this.$emit("siteName", 7);
             });
@@ -233,7 +232,6 @@ export default {
             // this.tags.forEach((element) => {
             //    console.log(JSON.parse(element));
             // });
-            console.log(this.tags);
          });
       },
      

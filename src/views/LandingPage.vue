@@ -15,11 +15,13 @@
               Sign in
             </div> -->
             <div
+              @click="logIn"
               class="tw-text-white tw-px-4 tw-py-2 tw-mr-4 tw-cursor-pointer tw-rounded"
             >
               <h4 class="tw-font-medium">Log in</h4>
             </div>
             <div
+              @click="signUp"
               class="tw-bg-[#0070f3] hover:tw-bg-[#3291ff] tw-text-white tw-px-4 tw-py-2 tw-cursor-pointer tw-rounded"
             >
               <h4 class="tw-font-medium">Sign up</h4>
@@ -46,6 +48,7 @@
           </div>
           <div class="tw-flex tw-justify-center tw-mt-12">
             <div
+              @click="signUp"
               class="tw-cursor-pointer tw-text-white tw-bg-[#0070f3] hover:tw-bg-[#3291ff] tw-rounded-lg md:tw-px-6 tw-px-4 tw-py-2 md:tw-py-3"
             >
               <h3 class="md:tw-text-lg tw-font-medium">Get started</h3>
@@ -63,7 +66,9 @@
       <div class="tw-mt-20 md:tw-px-[100px] tw-px-[20px]">
         <v-row>
           <v-col cols="12" lg="3" md="6">
-            <div class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8">
+            <div
+              class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8"
+            >
               <div class="logo">
                 <img src="../assets/Logo/edit.svg" alt="" />
               </div>
@@ -80,7 +85,9 @@
             </div>
           </v-col>
           <v-col cols="12" lg="3" md="6">
-            <div class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8">
+            <div
+              class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8"
+            >
               <div class="logo">
                 <img src="../assets/Logo/realTime.svg" alt="" />
               </div>
@@ -97,7 +104,9 @@
             </div>
           </v-col>
           <v-col cols="12" lg="3" md="6">
-            <div class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8">
+            <div
+              class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8"
+            >
               <div class="logo">
                 <img src="../assets/Logo/comment.svg" alt="" />
               </div>
@@ -115,7 +124,9 @@
             </div>
           </v-col>
           <v-col cols="12" lg="3" md="6">
-            <div class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8">
+            <div
+              class="tw-bg-[#222] md:tw-min-h-[400px] tw-text-white tw-rounded-lg tw-p-8"
+            >
               <div class="logo">
                 <img src="../assets/Logo/insight.svg" alt="" />
               </div>
@@ -136,6 +147,18 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    logIn() {
+      this.$router.push("/login");
+    },
+    signUp() {
+      this.$router.push("/signup");
+    },
+  },
+};
+</script>
 <style scoped>
 .button {
   /* background: none; */

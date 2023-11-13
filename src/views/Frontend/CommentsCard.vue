@@ -116,8 +116,7 @@ export default {
                   },
                }
             )
-            .then((res) => {
-               console.log(res);
+            .then(() => {
                this.$emit("report");
             });
       },

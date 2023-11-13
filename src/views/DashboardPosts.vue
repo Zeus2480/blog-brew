@@ -118,7 +118,6 @@ export default {
    },
    watch: {
       selected(value) {
-         console.log(value);
          // this.filterPost(newV);
          if (value == "All") {
             this.activePost = this.allPosts;
@@ -129,11 +128,9 @@ export default {
          if (value == "Archived") {
             this.activePost = this.archivedPost;
          }
-         console.log(this.activePost);
       },
-      slug(value) {
+      slug() {
          this.getAllPosts();
-         console.log(value);
          // this.filterPost(value);
       },
    },
@@ -158,11 +155,9 @@ export default {
             this.activePost = this.activePost.filter(post => {
                return post.name.toLowerCase().includes(searchQuery.toLowerCase());
             });
-            console.log(this.activePost);
             
          }
          else{
-            console.log("hello");   
             
             this.filterPostArray();
             if(this.selected=="All"){
@@ -178,7 +173,6 @@ export default {
                this.activePost = this.draftPost;
             }
          }
-         console.log(searchQuery);
       },
       filterPost(value) {
          // console.log(value);
@@ -191,12 +185,9 @@ export default {
          if (value == "Archived") {
             this.activePost = this.archivedPost;
          }
-         console.log(this.activePost);
       },
       showSnackbar(text,index,resdata) {
-         console.log("Sss");
-         console.log(text,index,resdata);
-         console.log(this.selected);
+        
          if(this.selected!="All"){
             this.activePost.splice(index,1);
          }
@@ -222,12 +213,9 @@ export default {
             axios
                .get(`/user/${this.slug}/posts`)
                .then((res) => {
-                  console.log(res.data);
                   this.allPosts = res.data.reverse();
                   this.filterPostArray();
                   this.activePost = this.allPosts;
-                  console.log(this.archivedPost);
-                  console.log(this.publishedPost);
                   if (this.allPosts.length == 0) {
                      this.emptyStateCheck = true;
                   } else {

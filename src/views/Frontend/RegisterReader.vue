@@ -200,7 +200,6 @@ export default {
                password: this.inputPassword,
                password_confirmation: this.inputConfirmPassword,
             };
-            console.log(data);
             axios
                .post("/register", data)
                .then((res) => {
