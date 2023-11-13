@@ -259,7 +259,7 @@ export default {
       copyLink(e) {
          e.stopPropagation();
          navigator.clipboard.writeText(
-            `http://localhost:8080/view/${this.$store.getters.getSlug}/${this.postId}`
+            `https://blogbrew.in/view/${this.$store.getters.getSlug}/${this.postId}`
          );
          this.$emit("showSnackbar", "Link Copied Sucessfully");
       },
