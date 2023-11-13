@@ -202,7 +202,7 @@ export default {
 @media screen and (max-width: 600px) {
   .boujee-text {
     font-size: clamp(
-      3rem,
+      2.5rem,
       5vmin,
       3rem
     ); /* Further adjust font size for smaller screens */
